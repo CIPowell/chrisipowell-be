@@ -7,5 +7,11 @@ module "lambda_base" {
 }
 
 module "api_gateway" {
-  source = "./terraform/modules/api/gateway"
+  source = "./terraform/modules/api/base"
+}
+
+module "status_lambda" {
+  source = "./terraform/modules/api/status"
+  api_gateway_id = module.api_gateway.api_gateway_id
+  lambda_role_id = module.lambda_base.lambda_role_arn
 }
