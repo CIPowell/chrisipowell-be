@@ -8,11 +8,37 @@ resource "aws_apigatewayv2_api" "api" {
     protocol_type = "HTTP"
 }
 
+data "aws_iam_policy_document" "api" {
+    statement {
+        actions = [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:DescribeLogGroups",
+            "logs:DescribeLogStreams",
+            "logs:PutLogEvents",
+            "logs:GetLogEvents",
+            "logs:FilterLogEvents"
+        ]
+
+        resources = ["*"]
+    }
+}
+
+resource "aws_iam_role" "api" {
+    name = "cipapirole"
+    assume_role_policy = data.aws_iam_policy_document.api.json
+}
+
 resource "aws_apigatewayv2_stage" "prod" { 
   api_id = aws_apigatewayv2_api.api.id
   name = "prod"
 
   auto_deploy = true
+
+  access_log_settings {
+      destination_arn = aws_cloudwatch_log_group.api_access_log.arn
+      format = "$context.identity.sourceIp $context.identity.caller $context.identity.user [$context.requestTime] $context.httpMethod $context.resourcePath $context.protocol $context.status $context.responseLength $context.requestId"
+  }
 
   lifecycle {
     ignore_changes = [deployment_id, default_route_settings]
@@ -57,6 +83,10 @@ resource "aws_apigatewayv2_api_mapping" "api_mapping"{
     api_id = aws_apigatewayv2_api.api.id
     domain_name = aws_apigatewayv2_domain_name.api_domain.id
     stage = aws_apigatewayv2_stage.prod.id
+}
+
+resource "aws_cloudwatch_log_group" "api_access_log" {
+    name = "api_logs"
 }
 
 output "api_gateway_id" {
