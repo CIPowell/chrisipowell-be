@@ -7,7 +7,7 @@ resource "aws_apigatewayv2_route" "route" {
 
 resource "aws_apigatewayv2_integration" "integration" { 
     api_id = var.api_gateway_id
-    integration_type = "AWS"
+    integration_type = "AWS_PROXY"
 
     integration_method = "GET"
     integration_uri = aws_lambda_function.function.arn
