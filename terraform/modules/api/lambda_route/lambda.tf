@@ -4,7 +4,7 @@ data "archive_file" "temporary_lambda" {
 
     source {
         content = "module.exports = (event, context) => ({ status: 'NOT IMPLEMENTED' });"
-        filename = "index.js"
+        filename = "src/index.js"
     }
 }
 

@@ -1,4 +1,4 @@
-const handler = require('../src/main');
+const { handler } = require('../src/index');
 
 describe('Status Endpoint', () => {
     it('Should normally return OK', () => {
