@@ -13,6 +13,10 @@ resource "aws_apigatewayv2_stage" "prod" {
   name = "prod"
 
   auto_deploy = true
+
+  lifecycle {
+    ignore_changes = [deployment_id, default_route_settings]
+  }
 }
 
 resource "aws_apigatewayv2_domain_name" "api_domain" { 
