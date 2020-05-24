@@ -1,1 +1,0 @@
-module.exports = (event, context) => ({ status: "OK" });

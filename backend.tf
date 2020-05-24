@@ -16,6 +16,16 @@ module "status_lambda" {
   lambda_role_id = module.lambda_base.lambda_role_arn
   method = "GET"
   name = "statusCheck"
-  handler = "handler"
+  handler = "src/index.handler"
   path = "/status"
+}
+
+module "blog_list" {
+  source = "./terraform/modules/api/lambda_route"
+  api_gateway_id = module.api_gateway.api_gateway_id
+  lambda_role_id = module.lambda_base.lambda_role_arn
+  method = "GET"
+  name = "listPosts"
+  handler = "src/index.handler"
+  path = "/blog"
 }
