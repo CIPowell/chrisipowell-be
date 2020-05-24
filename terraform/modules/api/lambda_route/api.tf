@@ -2,7 +2,7 @@ resource "aws_apigatewayv2_route" "route" {
     api_id = var.api_gateway_id
     route_key = "${var.method} ${var.path}"    
 
-    target = aws_apigatewayv2_integration.integration.id
+    target = "integrations/${aws_apigatewayv2_integration.integration.id}$"
 }
 
 resource "aws_apigatewayv2_integration" "integration" { 
