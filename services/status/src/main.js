@@ -1,1 +1,1 @@
-module.exports = (event, context) => ({ status: "NOT IMPLEMENTED" });
+module.exports = (event, context) => ({ status: "OK" });
