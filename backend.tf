@@ -11,7 +11,11 @@ module "api_gateway" {
 }
 
 module "status_lambda" {
-  source = "./terraform/modules/api/status"
+  source = "./terraform/modules/api/lambda_route"
   api_gateway_id = module.api_gateway.api_gateway_id
   lambda_role_id = module.lambda_base.lambda_role_arn
+  method = "GET"
+  name = "statusCheck"
+  handler = "handler"
+  path = "/status"
 }
