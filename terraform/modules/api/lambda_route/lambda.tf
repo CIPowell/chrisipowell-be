@@ -3,7 +3,7 @@ data "archive_file" "temporary_lambda" {
     output_path = "${path.module}/lambda_function_payload.zip"
 
     source {
-        content = "module.exports = (event, context) => ({ status: 'NOT IMPLEMENTED' });"
+        content = "module.exports.handler = (event, context) => ({ status: 'NOT IMPLEMENTED' });"
         filename = "src/index.js"
     }
 }
