@@ -13,6 +13,7 @@ module "api_gateway" {
 module "status_lambda" {
   source = "./terraform/modules/api/lambda_route"
   api_gateway_id = module.api_gateway.api_gateway_id
+  api_gateway_execution_arn = module.api_gateway.api_gateway_execution_arn
   lambda_role_id = module.lambda_base.lambda_role_arn
   method = "GET"
   name = "statusCheck"
@@ -23,6 +24,7 @@ module "status_lambda" {
 module "blog_list" {
   source = "./terraform/modules/api/lambda_route"
   api_gateway_id = module.api_gateway.api_gateway_id
+  api_gateway_execution_arn = module.api_gateway.api_gateway_execution_arn
   lambda_role_id = module.lambda_base.lambda_role_arn
   method = "GET"
   name = "listPosts"

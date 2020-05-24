@@ -17,3 +17,10 @@ resource "aws_lambda_function" "function" {
     filename        = data.archive_file.temporary_lambda.output_path
 }
 
+resource "aws_lambda_permission" "apigateway" {
+    statement_id = "AllowAPIGateway"
+    action = "lambda:InvokeFunction"
+    function_name = var.name
+    principal = "apigateway.amazonaws.com"
+    source_arn = "${var.api_gateway_execution_arn}/*/${var.method}${var.path}"
+}
