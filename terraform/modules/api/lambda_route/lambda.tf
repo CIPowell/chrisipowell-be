@@ -1,16 +1,3 @@
-variable api_gateway_id { type = string }
-variable lambda_role_id { type = string }
-variable path { type = string }
-variable name { type = string }
-variable handler { 
-    type = string 
-    default = "src/index.handler"
-}
-variable runtime {
-    type = string
-    default = "nodejs12.x"
-}
-
 data "archive_file" "temporary_lambda" {
     type = "zip"
     output_path = "${path.module}/lambda_function_payload.zip"
