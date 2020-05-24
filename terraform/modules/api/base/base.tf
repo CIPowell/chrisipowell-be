@@ -62,3 +62,7 @@ resource "aws_apigatewayv2_api_mapping" "api_mapping"{
 output "api_gateway_id" {
     value = aws_apigatewayv2_api.api.id
 }
+
+output "api_gateway_execution_arn" { 
+    value = aws_apigatewayv2_api.api.execution_arn
+}
