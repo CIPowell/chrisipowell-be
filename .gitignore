@@ -1,5 +1,7 @@
 .terraform
+.scannerwork
+.vscode
+
 node_modules
 dist
-.vscode
 coverage
