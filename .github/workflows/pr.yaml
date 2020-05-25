@@ -14,7 +14,7 @@ jobs:
           node-version: 12.x
       - run: npm install -g lerna
       - run: lerna bootstrap
-      - run: 
+      - run: npm test -- --coverage
         env: 
           CI: true
       - run: npm run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.pullrequest.branch=${GITHUB_REF#refs/heads/} -Dsonar.pullrequest.base=master -Dsonar.pullrequest.key=${GITHUB_REF//[^0-9]/}
