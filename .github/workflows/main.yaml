@@ -29,8 +29,8 @@ jobs:
           tag-prefix: ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: push to lambda
-        run: aws lambda list-functions --query 'Functions[].FunctionName' --output=json | jq '.[]'
+      - name: Run Deployments
+        run: lerna run deploy
         env:
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
