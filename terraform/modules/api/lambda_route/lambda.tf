@@ -24,3 +24,23 @@ resource "aws_lambda_permission" "apigateway" {
     principal = "apigateway.amazonaws.com"
     source_arn = "${var.api_gateway_execution_arn}/*/*${var.path}"
 }
+
+resource "aws_lambda_alias" "dev" { 
+   name = "dev"
+   description = "Pre production alias"
+   function_name = var.name
+   function_version = "$LATEST"
+}
+
+resource "aws_lambda_alias" "prod" { 
+   name = "prod"
+   description = "production alias"
+   function_name = var.name
+   function_version = "$LATEST"
+
+   lifecycle {
+       ignore_changes = [
+           function_version
+       ]
+   }
+}

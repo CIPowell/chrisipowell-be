@@ -10,7 +10,7 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
-    "deploy": "aws lambda update-function-code --function-name statusCheck --zip-file fileb://dist/function.zip"
+    "deploy": "aws lambda update-function-code --function-name statusCheck --zip-file fileb://dist/function.zip --publish"
   },
   "author": "Chris I Powell <chris@chrisipowell.co.uk>",
   "license": "ISC",
