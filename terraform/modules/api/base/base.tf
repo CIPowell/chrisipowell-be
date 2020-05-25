@@ -18,7 +18,7 @@ resource "aws_apigatewayv2_stage" "prod" {
     ignore_changes = [deployment_id, default_route_settings]
   }
 
-  stage_variables {
+  stage_variables = {
       name = "prod"
   }
 }
@@ -33,7 +33,7 @@ resource "aws_apigatewayv2_stage" "dev" {
     ignore_changes = [deployment_id, default_route_settings]
   }
 
-  stage_variables {
+  stage_variables = {
       name = "dev"
   }
 }
