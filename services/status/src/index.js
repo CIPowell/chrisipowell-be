@@ -1,1 +1,5 @@
-module.exports.handler = (event, context) => ({ status: "OK" });
+module.exports.handler = async() => ({ 
+    statusCode: "200",
+    body: "{ \"status\":\"OK\" }",
+    headers: {} 
+});

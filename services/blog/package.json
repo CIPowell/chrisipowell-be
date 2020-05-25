@@ -27,9 +27,5 @@
   "dependencies": {
     "contentful": "^7.14.4",
     "winston": "^3.2.1"
-  },
-  "devDependencies": {
-    "eslint": "^7.1.0",
-    "nsp": "^3.2.1"
   }
 }
