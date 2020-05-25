@@ -17,6 +17,25 @@ resource "aws_apigatewayv2_stage" "prod" {
   lifecycle {
     ignore_changes = [deployment_id, default_route_settings]
   }
+
+  stage_variables {
+      name = "prod"
+  }
+}
+
+resource "aws_apigatewayv2_stage" "dev" { 
+  api_id = aws_apigatewayv2_api.api.id
+  name = "dev"
+
+  auto_deploy = true
+
+  lifecycle {
+    ignore_changes = [deployment_id, default_route_settings]
+  }
+
+  stage_variables {
+      name = "dev"
+  }
 }
 
 resource "aws_apigatewayv2_domain_name" "api_domain" { 

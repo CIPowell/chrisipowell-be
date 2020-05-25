@@ -10,5 +10,5 @@ resource "aws_apigatewayv2_integration" "integration" {
     integration_type = "AWS_PROXY"
 
     integration_method = "GET"
-    integration_uri = aws_lambda_function.function.arn
+    integration_uri = "${aws_lambda_function.function.arn}:$${stageVariables.name}"
 }
