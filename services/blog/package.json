@@ -19,7 +19,9 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip ."
+    "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
+    "deploy": "aws lambda update-function-code --function-name listPosts --zip-file fileb://dist/function.zip",
+    "release": "aws lambda update-alias --function-name listPosts --name prod --function-version $(aws lambda update-function-code --function-name listPosts --zip-file fileb://dist/function.zip --publish --query 'Version' --output text)"
   },
   "bugs": {
     "url": "https://github.com/CIPowell/chrisipowell-be/issues"
