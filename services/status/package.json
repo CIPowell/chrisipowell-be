@@ -3,18 +3,17 @@
   "version": "1.0.0",
   "description": "Status function",
   "main": "src/main.js",
-  "type": "module",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "jest",
-    "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip ."
+    "test": "jest --coverage",
+    "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
+    "deploy": "aws lambda update-function-code --function-name statusCheck --zip-file fileb://dist/function.zip"
   },
   "author": "Chris I Powell <chris@chrisipowell.co.uk>",
   "license": "ISC",
   "dependencies": {
-    "cip-constants": "^0.0.0",
     "winston": "^3.2.1"
   }
 }

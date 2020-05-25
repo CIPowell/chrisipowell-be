@@ -1,0 +1,37 @@
+name: Deploy Master
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Test and build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: npm install -g lerna
+      - run: npm install
+      - run: npm test -- --coverage  
+        env: 
+          CI: true
+      - run: npm run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: lerna run build
+      - name: Automated Version Bump
+        uses: phips28/gh-action-bump-version@master
+        with:
+          tag-prefix: ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Deployments
+        run: lerna run deploy
+        env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_REGION: 'eu-west-1'
