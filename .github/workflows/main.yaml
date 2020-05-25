@@ -24,7 +24,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: lerna run build
       - name: Automated Version Bump
-        uses: lerna version minor --yes
+        run: lerna version minor --yes
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Deployments
         run: lerna run deploy
