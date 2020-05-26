@@ -11,7 +11,7 @@ data "archive_file" "temporary_lambda" {
 resource "aws_lambda_function" "function" {
     function_name   = var.name
     handler         = var.handler
-    role            = var.lambda_role_id
+    role            = aws_iam_role.lambda_execution_role.arn
     runtime         = var.runtime
 
     filename        = data.archive_file.temporary_lambda.output_path
