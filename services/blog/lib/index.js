@@ -1,4 +1,4 @@
-const blog = require('blog');
+const blog = require('./blog');
 const Contentful = require('contentful');
 const { SecretsManager } = require('aws-sdk');
 
