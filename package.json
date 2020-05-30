@@ -13,6 +13,7 @@
     "sonarqube-scanner": "^2.6.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.686.0",
     "blog": "file:services/blog",
     "status": "file:services/status"
   }

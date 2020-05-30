@@ -46,7 +46,7 @@ module "blog_list" {
   api_gateway_execution_arn = module.api_gateway.api_gateway_execution_arn
   method = "GET"
   name = "listPosts"
-  handler = "src/index.handler"
+  handler = "lib/index.handler"
   path = "/blog"
   policies = [module.policies.cloudwatch_policy, aws_iam_policy.contentful_key_access.arn]
 }

@@ -1,0 +1,52 @@
+{
+    "sys": {
+      "space": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Space",
+          "id": "c85g7urd11yl"
+        }
+      },
+      "id": "76pPUXkTIkkQGxzC4Mw0WH",
+      "type": "Entry",
+      "createdAt": "2020-05-30T12:20:14.375Z",
+      "updatedAt": "2020-05-30T12:30:14.000Z",
+      "environment": {
+        "sys": {
+          "id": "master",
+          "type": "Link",
+          "linkType": "Environment"
+        }
+      },
+      "revision": 1,
+      "contentType": {
+        "sys": {
+          "type": "Link",
+          "linkType": "ContentType",
+          "id": "blogPost"
+        }
+      },
+      "locale": "en-US"
+    },
+    "fields": {
+      "title": "Hello world!",
+      "body": {
+        "nodeType": "document",
+        "data": {},
+        "content": [
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "My First Blog Post",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
+          }
+        ]
+      }
+    }
+  }
