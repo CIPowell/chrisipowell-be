@@ -27,6 +27,7 @@
     "url": "https://github.com/CIPowell/chrisipowell-be/issues"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
     "contentful": "^7.14.4",
     "winston": "^3.2.1"
   }

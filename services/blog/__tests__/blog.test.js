@@ -1,6 +1,7 @@
 'use strict';
 
 const blog = require('../lib/blog');
+const testEntry = require('./testEntry.json');
 
 describe('Listing Blog articles', () => {
     let contentful;
@@ -13,12 +14,12 @@ describe('Listing Blog articles', () => {
         };
         logger = {};
         handler = blog({ contentful, logger });
+
+        contentful.getEntries.mockReturnValue({ items: [testEntry, testEntry, testEntry] });
     });
 
     it('Should request a list of blog articles', async () => {
-        contentful.getEntries.mockReturnValue({ items: [{}, {}, {}] });
-
-        let { items } = await handler({});
+        let items = await handler({});
 
         expect(contentful.getEntries.mock.calls.length).toBe(1);
 
@@ -27,7 +28,7 @@ describe('Listing Blog articles', () => {
         expect(skip).toBe(0);
         expect(limit).toBe(10);
         expect(order).toBe('sys.updatedAt');
-        expect(content_type).toBe('blog_entry');
+        expect(content_type).toBe('blogPost');
 
         expect(items.length).toBe(3);
     });
@@ -51,5 +52,16 @@ describe('Listing Blog articles', () => {
 
         expect(skip).toBe(expSkip);
         expect(limit).toBe(expLimit);
+    });
+
+    it('Should transform articles correctly', async () => {
+        let items = await handler({});
+
+        items.forEach(({ title, body, updatedAt, author }) => {
+            expect(title).toBe('Hello world!');
+            expect(body).toBe('<p>My First Blog Post</p>')
+            expect(updatedAt).toBe('2020-05-30T12:30:14.000Z')
+            expect(author).toBe('CIP');
+        });
     });
 });
