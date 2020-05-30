@@ -50,8 +50,3 @@ module "blog_list" {
   path = "/blog"
   policies = [module.policies.cloudwatch_policy, aws_iam_policy.contentful_key_access.arn]
 }
-
-resource "aws_iam_role_policy_attachment" "contentful_key_access" {
-  role = module.blog_list.lambda_role_arn
-  policy_arn = aws_iam_policy.contentful_key_access.arn
-}
