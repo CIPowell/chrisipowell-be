@@ -15,3 +15,8 @@ variable method {
     type = string
     default = "GET"
 }
+
+variable policies {
+    type = list(string)
+    default = []
+}

@@ -25,6 +25,10 @@ resource "aws_iam_policy" "contentful_key_access" {
   policy = data.aws_iam_policy_document.contentful_key_access.json
 }
 
+module "policies" {
+  source = "./terraform/modules/policies"
+}
+
 module "status_lambda" {
   source = "./terraform/modules/api/lambda_route"
   api_gateway_id = module.api_gateway.api_gateway_id
@@ -33,6 +37,7 @@ module "status_lambda" {
   name = "statusCheck"
   handler = "src/index.handler"
   path = "/status"
+  policies = [module.policies.cloudwatch_policy]
 }
 
 module "blog_list" {
@@ -43,6 +48,7 @@ module "blog_list" {
   name = "listPosts"
   handler = "src/index.handler"
   path = "/blog"
+  policies = [module.policies.cloudwatch_policy, aws_iam_policy.contentful_key_access.arn]
 }
 
 resource "aws_iam_role_policy_attachment" "contentful_key_access" {
