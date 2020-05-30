@@ -9,12 +9,11 @@ data "aws_iam_policy_document" "lamdba_execution_policy" {
 }
 
 resource "aws_iam_role" "lambda_execution_role" {
-   name = "lambda_execution_role"
+   name = "${var.name}-execution-role"
    assume_role_policy = data.aws_iam_policy_document.lamdba_execution_policy.json
 }
 
-
-resource "aws_iam_role_policy_attachment" "lambda_cloudwatch" {
+resource "aws_iam_role_policy_attachment" "lambda" {
     count = length(var.policies)
 
     role = aws_iam_role.lambda_execution_role.name
