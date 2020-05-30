@@ -16,7 +16,7 @@ const setup = async () => {
                 resolve(blog({ contentful: Contentful.createClient({
                     space: 'c85g7urd11yl',
                     accessToken: data.SecretString
-                })})({})); 
+                })})); 
             });
         });
     } catch (err) {
