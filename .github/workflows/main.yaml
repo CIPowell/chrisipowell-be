@@ -15,7 +15,7 @@ jobs:
         with:
           node-version: 12.x
       - run: npm install -g lerna
-      - run: npm install
+      - run: lerna bootstrap
       - run: npm test -- --coverage  
         env: 
           CI: true
