@@ -1,11 +1,18 @@
 {
   "name": "blog",
   "version": "1.0.0",
+  "private": true,
   "description": "> TODO: description",
   "author": "Chris Powell <chris.powell@charlottetilbury.com>",
   "homepage": "https://github.com/CIPowell/chrisipowell-be#readme",
   "license": "ISC",
-  "main": "lib/blog.js",
+  "main": "lib/index.js",
+  "workspaces": {
+    "nohoist": [
+      "**/contentful",
+      "**/@contentful/**"
+    ]
+  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -18,6 +25,7 @@
     "url": "git+https://github.com/CIPowell/chrisipowell-be.git"
   },
   "scripts": {
+    "start": "node lib/index.js",
     "test": "jest --coverage",
     "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
     "deploy": "aws lambda update-function-code --function-name listPosts --zip-file fileb://dist/function.zip",
@@ -28,7 +36,13 @@
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^13.4.0",
+    "aws-sdk": "^2.703.0",
     "contentful": "^7.14.4",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "jest": "^25.3.0",
+    "sonarqube-scanner": "^2.6.0"
   }
 }
