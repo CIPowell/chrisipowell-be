@@ -11,4 +11,6 @@ resource "aws_apigatewayv2_integration" "integration" {
 
     integration_method = "GET"
     integration_uri = "${aws_lambda_function.function.arn}:$${stageVariables.name}"
+
+    payload_format_version = "2.0"
 }
