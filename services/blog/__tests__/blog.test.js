@@ -57,11 +57,27 @@ describe('Listing Blog articles', () => {
     it('Should transform articles correctly', async () => {
         let items = await handler({});
 
-        items.forEach(({ title, body, updatedAt, author }) => {
+        items.forEach(({ title, body, updatedAt, author, video }) => {
             expect(title).toBe('Hello world!');
             expect(body).toBe('<p>My First Blog Post</p>')
             expect(updatedAt).toBe('2020-05-30T12:30:14.000Z')
             expect(author).toBe('CIP');
+            expect(video).toBe(null);
+        });
+    });
+
+    it('should return a url for the videof there is one', async () => {
+        testEntry.fields.video = {
+            "uploadId": "vQYGB02fw015bC01bPvpbzbUlOnY1y50148fdtclWuVvdmw",
+            "assetId": "9tb2esatVoE7MpZnI44I2Vqh01XSCbX7a8x2AEohbPWk",
+            "playbackId": "vdija4nm02TW5kleRaMld8XavCjaMDCSKGZfMjyKNfkA",
+            "ready": true
+        };
+
+        let items = await handler({});
+
+        items.forEach(({ video }) => {
+            expect(video).toBe(`https://stream.mux.com/vdija4nm02TW5kleRaMld8XavCjaMDCSKGZfMjyKNfkA.m3u8`)
         });
     });
 });
