@@ -2,9 +2,15 @@
 
 const { documentToHtmlString } = require('@contentful/rich-text-html-renderer');
 
-const listArticles = ({ contentful }) => async({page = 1, pageSize = 10}) => {
+const getVideo = (post) => {
+    if (post.fields.video && post.fields.video.ready) {
+        return `https://stream.mux.com/${post.fields.video.playbackId}.m3u8`;
+    }
 
-    console.log("Getting entries")
+    return null;
+}
+
+const listArticles = ({ contentful }) => async({page = 1, pageSize = 10}) => {
     let { items } = await contentful.getEntries({
         skip: (page - 1) * pageSize,
         limit: pageSize,
@@ -12,15 +18,12 @@ const listArticles = ({ contentful }) => async({page = 1, pageSize = 10}) => {
         content_type: 'blogPost'
     });
 
-    console.log(items.length + ' entries');
-
-    console.log(JSON.stringify(items, null, 4));
-
     return items.map(post => ({
         title: post.fields.title,
         body: documentToHtmlString(post.fields.body),
         updatedAt: post.sys.updatedAt,
-        author: 'CIP'
+        author: 'CIP',
+        video: getVideo(post)
     }));
 }
     

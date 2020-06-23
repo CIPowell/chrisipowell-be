@@ -4,29 +4,32 @@ const { SecretsManager } = require('aws-sdk');
 
 const secretsManager = new SecretsManager({ region: 'eu-west-1' });
 
+const getSecret = () => new Promise((resolve, reject) => {   
+    console.log("getting secret");
+    secretsManager.getSecretValue({ SecretId: 'contentful-api-key'}, (err, data) => {
+        if(err) {
+            console.error(err)
+            return reject(new Error("Could not get Secret"));
+        }
+
+        resolve(data.SecretString);
+    })
+});
+
 const setup = async () => {
     try {
-        return await new Promise((resolve, reject) => {   
-            console.log("getting secret");
-            secretsManager.getSecretValue({ SecretId: 'contentful-api-key'}, (err, data) => {
-                if(err) {
-                    console.error(err)
-                    return reject(new Error("Could not get Secret"));
-                }
-
-                console.log("got secret running function")
-                resolve(
-                    blog({ contentful: Contentful.createClient({
-                        space: 'c85g7urd11yl',
-                        accessToken: data.SecretString
-                    })})
-                ); 
-            });
-        });
+        return blog({ contentful: Contentful.createClient({
+            space: 'c85g7urd11yl',
+            accessToken: await getSecret()
+        })})
+        
     } catch (err) {
         console.error(err.message);
         throw err;
     }
 };
 
-module.exports.handler = setup();
+module.exports.handler = async (event) => {
+   let func = await setup();
+   return func(event);
+}
