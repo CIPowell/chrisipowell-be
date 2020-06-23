@@ -6,7 +6,7 @@ const secretsManager = new SecretsManager({ region: 'eu-west-1' });
 
 const setup = async () => {
     try {
-        await new Promise((resolve, reject) => {   
+        return await new Promise((resolve, reject) => {   
             console.log("getting secret");
             secretsManager.getSecretValue({ SecretId: 'contentful-api-key'}, (err, data) => {
                 if(err) {
@@ -17,15 +17,15 @@ const setup = async () => {
                 console.log("got secret running function")
                 resolve(
                     blog({ contentful: Contentful.createClient({
-                    space: 'c85g7urd11yl',
-                    accessToken: data.SecretString
-                })})({})
+                        space: 'c85g7urd11yl',
+                        accessToken: data.SecretString
+                    })})
                 ); 
             });
         });
     } catch (err) {
         console.error(err.message);
-        reject(err);
+        throw err;
     }
 };
 
