@@ -7,7 +7,7 @@ resource "aws_apigatewayv2_api" "api" {
     name = "cipapi"
     protocol_type = "HTTP"
 
-    cors_configuration = {
+    cors_configuration {
         allow_origins = [
             "localhost:3000",
             "www.chrisipowell.co.uk",
