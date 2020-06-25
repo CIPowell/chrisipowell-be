@@ -6,6 +6,14 @@ data "aws_route53_zone" "zone" {
 resource "aws_apigatewayv2_api" "api" {
     name = "cipapi"
     protocol_type = "HTTP"
+
+    cors_configuration = {
+        allow_origins = [
+            "localhost:3000",
+            "www.chrisipowell.co.uk",
+            "dev.chrisipowell.co.uk"
+        ]
+    }
 }
 
 resource "aws_apigatewayv2_stage" "prod" { 
