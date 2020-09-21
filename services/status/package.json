@@ -17,5 +17,10 @@
   "license": "ISC",
   "dependencies": {
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.1.0",
+    "jest": "^25.3.0",
+    "sonarqube-scanner": "^2.6.0"
   }
 }
