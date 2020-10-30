@@ -13,8 +13,12 @@ resource "aws_lambda_function" "function" {
     handler         = var.handler
     role            = aws_iam_role.lambda_execution_role.arn
     runtime         = var.runtime
-
+    
     filename        = data.archive_file.temporary_lambda.output_path
+
+    tracing_config {
+        mode = "Active"
+    }
 }
 
 resource "aws_lambda_permission" "apigateway" {
