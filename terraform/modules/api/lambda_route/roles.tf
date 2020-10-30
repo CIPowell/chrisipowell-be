@@ -8,17 +8,6 @@ data "aws_iam_policy_document" "lamdba_execution_policy" {
             identifiers = ["lambda.amazonaws.com"]
         }
     }
-
-    statement {
-        actions = [
-            "xray:*"
-        ]
-        resources = ["*"]
-        principals {
-            type = "Service"
-            identifiers = ["lambda.amazonaws.com"]
-        }
-    }
 }
 
 resource "aws_iam_role" "lambda_execution_role" {
