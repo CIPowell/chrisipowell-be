@@ -9,7 +9,8 @@ data "aws_iam_policy_document" "cloudwatch_permissions" {
         actions = [
             "logs:CreateLogGroup",
             "logs:CreateLogStream",
-            "logs:PutLogEvents"
+            "logs:PutLogEvents",
+            "xray:*"
         ]
 
         resources = ["*"]
