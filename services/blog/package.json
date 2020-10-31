@@ -11,7 +11,8 @@
     "nohoist": [
       "**/contentful",
       "**/@contentful/**",
-      "**/aws-xray-sdk-core"
+      "**/aws-xray-sdk-core",
+      "**/aws-xray-sdk-core/**"
     ]
   },
   "directories": {
