@@ -1,6 +1,11 @@
-const blog = require('./blog');
+const AWSXRay = requre('aws-xray-sdk-core');
+const { SecretsManager } = AWSXRay.captureAWS(require('aws-sdk'));
+
 const Contentful = require('contentful');
-const { SecretsManager } = require('aws-sdk');
+
+const blog = require('./blog');
+
+AWSXRay.captureHTTPsGlobal(require('http'));
 
 const secretsManager = new SecretsManager({ region: 'eu-west-1' });
 
