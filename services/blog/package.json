@@ -10,7 +10,8 @@
   "workspaces": {
     "nohoist": [
       "**/contentful",
-      "**/@contentful/**"
+      "**/@contentful/**",
+      "**/aws-xray-sdk-core"
     ]
   },
   "directories": {
