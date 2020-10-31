@@ -1,11 +1,12 @@
 const AWSXRay = require('aws-xray-sdk-core');
 const { SecretsManager } = AWSXRay.captureAWS(require('aws-sdk'));
 
+AWSXRay.captureHTTPsGlobal(require('http'));
+AWSXRay.captureHTTPsGlobal(require('https'));
+
 const Contentful = require('contentful');
 
 const blog = require('./blog');
-
-AWSXRay.captureHTTPsGlobal(require('http'));
 
 const secretsManager = new SecretsManager({ region: 'eu-west-1' });
 
