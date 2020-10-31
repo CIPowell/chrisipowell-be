@@ -1,4 +1,4 @@
-const AWSXRay = requre('aws-xray-sdk-core');
+const AWSXRay = require('aws-xray-sdk-core');
 const { SecretsManager } = AWSXRay.captureAWS(require('aws-sdk'));
 
 const Contentful = require('contentful');
