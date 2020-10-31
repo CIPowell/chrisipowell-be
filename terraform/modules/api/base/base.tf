@@ -11,7 +11,7 @@ resource "aws_apigatewayv2_api" "api" {
         allow_origins = [
             "http://localhost:3000",
             "https://www.chrisipowell.co.uk",
-            "https://dev.chrisipowell.co.uk"
+            "http://dev.chrisipowell.co.uk"
         ]
     }
 }
