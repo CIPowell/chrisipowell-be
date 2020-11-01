@@ -14,5 +14,6 @@
   "scripts": {
     "sonar": "sonar-scanner",
     "test": "jest"
-  }
+  },
+  "version": "1.0.0"
 }
