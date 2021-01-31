@@ -3,6 +3,7 @@ const { SecretsManager } = AWSXRay.captureAWS(require('aws-sdk'));
 
 AWSXRay.captureHTTPsGlobal(require('http'));
 AWSXRay.captureHTTPsGlobal(require('https'));
+AWSXRay.capturePromise();
 
 const Contentful = require('contentful');
 
