@@ -16,6 +16,7 @@ jobs:
       - run: yarn test --coverage
         env: 
           CI: true
+      - run: yarn audit
       - run: yarn run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.pullrequest.branch=${GITHUB_REF#refs/heads/} -Dsonar.pullrequest.base=master -Dsonar.pullrequest.key=${GITHUB_REF//[^0-9]/}
       - run: yarn workspaces run build
       

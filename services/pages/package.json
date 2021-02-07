@@ -1,8 +1,8 @@
 {
-  "name": "blog",
+  "name": "pages",
   "version": "1.0.0",
   "private": true,
-  "description": "Functions to access blog posts",
+  "description": "Functions to access pages posts",
   "author": "Chris Powell <chris.powell@charlottetilbury.com>",
   "homepage": "https://github.com/CIPowell/chrisipowell-be#readme",
   "license": "ISC",
@@ -10,9 +10,7 @@
   "workspaces": {
     "nohoist": [
       "**/contentful",
-      "**/@contentful/**",
-      "**/aws-xray-sdk-core",
-      "**/aws-xray-sdk-core/**"
+      "**/@contentful/**"
     ]
   },
   "directories": {
@@ -30,8 +28,8 @@
     "start": "node lib/index.js",
     "test": "jest --coverage",
     "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
-    "deploy": "aws lambda update-function-code --function-name listPosts --zip-file fileb://dist/function.zip",
-    "release": "aws lambda update-alias --function-name listPosts --name prod --function-version $(aws lambda update-function-code --function-name listPosts --zip-file fileb://dist/function.zip --publish --query 'Version' --output text)"
+    "deploy": "aws lambda update-function-code --function-name listPages --zip-file fileb://dist/function.zip",
+    "release": "aws lambda update-alias --function-name listPages --name prod --function-version $(aws lambda update-function-code --function-name listPages --zip-file fileb://dist/function.zip --publish --query 'Version' --output text)"
   },
   "bugs": {
     "url": "https://github.com/CIPowell/chrisipowell-be/issues"
@@ -39,7 +37,6 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^13.4.0",
     "aws-sdk": "^2.703.0",
-    "aws-xray-sdk-core": "^3.2.0",
     "contentful": "^8.1.7",
     "winston": "^3.2.1"
   },
