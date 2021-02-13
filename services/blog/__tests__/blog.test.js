@@ -57,9 +57,10 @@ describe('Listing Blog articles', () => {
     it('Should transform articles correctly', async () => {
         let items = await handler({});
 
-        items.forEach(({ title, body, updatedAt, author, video }) => {
+        items.forEach(({ title, preview, body, updatedAt, author, video }) => {
             expect(title).toBe('Hello world!');
-            expect(body).toBe('<p>My First Blog Post</p>')
+            expect(body).toBe('<p>My First Blog Post</p><p>More text...</p>')
+            expect(preview).toBe('<p>My First Blog Post</p>');
             expect(updatedAt).toBe('2020-05-30T12:30:14.000Z')
             expect(author).toBe('CIP');
             expect(video).toBe(null);
