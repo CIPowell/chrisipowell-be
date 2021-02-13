@@ -12,11 +12,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - run: yarn install
-      - run: yarn test --coverage
+      - run: npm install
+      - run: npm test
         env: 
           CI: true
-      - run: yarn audit
-      - run: yarn run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.pullrequest.branch=${GITHUB_REF#refs/heads/} -Dsonar.pullrequest.base=master -Dsonar.pullrequest.key=${GITHUB_REF//[^0-9]/}
-      - run: yarn workspaces run build
+      - run: npm audit
+      - run: npm run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }} -Dsonar.pullrequest.branch=${GITHUB_REF#refs/heads/} -Dsonar.pullrequest.base=master -Dsonar.pullrequest.key=${GITHUB_REF//[^0-9]/}
+      - run: npm run build
       
