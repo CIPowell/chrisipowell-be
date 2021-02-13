@@ -6,6 +6,7 @@ AWSXRay.captureHTTPsGlobal(require('https'));
 AWSXRay.capturePromise();
 
 const Contentful = require('contentful');
+const pages = require('./pages');
 
 const getSecret = () => new Promise((resolve, reject) => {   
     console.log("getting secret");
@@ -21,7 +22,7 @@ const getSecret = () => new Promise((resolve, reject) => {
 
 const setup = async () => {
     try {
-        return blog({ contentful: Contentful.createClient({
+        return pages({ contentful: Contentful.createClient({
             space: 'c85g7urd11yl',
             accessToken: await getSecret()
         })})
@@ -32,6 +33,12 @@ const setup = async () => {
     }
 };
 
-module.exports.handler = async (event, context) => {
-    return Object.assign({}, {event}, {context});
+module.exports.handler = async (event) => {
+    let { slug } = event.pathParmeters
+    let { listPages, getPage } = await setup();
+
+    return { 
+        links : listPages(slug),
+        content: getPage(slug)
+    }
  }
