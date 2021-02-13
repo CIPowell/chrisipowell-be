@@ -21,10 +21,19 @@ const listArticles = ({ contentful }) => async({page = 1, pageSize = 10}) => {
     return items.map(post => ({
         title: post.fields.title,
         body: documentToHtmlString(post.fields.body),
+        preview: documentToHtmlString(getPreview(post.fields.body)),
         updatedAt: post.sys.updatedAt,
         author: 'CIP',
         video: getVideo(post)
     }));
 }
     
+const getPreview = (body) => {
+    const previewContent = body.content
+        .filter(element => element.nodeType == "paragraph")
+        .slice(0, 1);
+    
+    return Object.assign({}, body, { content: previewContent })
+}
+
 module.exports = deps => listArticles(deps);

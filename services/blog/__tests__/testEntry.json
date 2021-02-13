@@ -45,6 +45,18 @@
               }
             ],
             "data": {}
+          },
+          {
+            "nodeType": "paragraph",
+            "content": [
+              {
+                "nodeType": "text",
+                "value": "More text...",
+                "marks": [],
+                "data": {}
+              }
+            ],
+            "data": {}
           }
         ]
       }
