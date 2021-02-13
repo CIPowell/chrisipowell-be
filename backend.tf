@@ -51,17 +51,6 @@ module "blog_list" {
   policies = [module.policies.cloudwatch_policy, aws_iam_policy.contentful_key_access.arn]
 }
 
-module "pages" {
-  source = "./terraform/modules/api/lambda_route"
-  api_gateway_id = module.api_gateway.api_gateway_id
-  api_gateway_execution_arn = module.api_gateway.api_gateway_execution_arn
-  method = "GET"
-  name = "pages"
-  handler = "lib/index.handler"
-  path = "/page"
-  policies = [module.policies.cloudwatch_policy, aws_iam_policy.contentful_key_access.arn]
-}
-
 module "page" {
   source = "./terraform/modules/api/lambda_route"
   api_gateway_id = module.api_gateway.api_gateway_id
