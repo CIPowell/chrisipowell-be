@@ -28,7 +28,7 @@
     "start": "node lib/index.js",
     "test": "jest --coverage",
     "build": "rm -rf dist && mkdir dist && zip -r dist/function.zip .",
-    "deploy": "aws lambda update-function-code --function-name listPages --zip-file fileb://dist/function.zip",
+    "deploy": "aws lambda update-function-code --function-name pages --zip-file fileb://dist/function.zip",
     "release": "aws lambda update-alias --function-name listPages --name prod --function-version $(aws lambda update-function-code --function-name listPages --zip-file fileb://dist/function.zip --publish --query 'Version' --output text)"
   },
   "bugs": {
