@@ -4,9 +4,9 @@
   "scripts": {
     "postinstall": "for dir in services/*; do (cd \"$dir\" && npm install); done",
     "test": "for dir in services/*; do (cd \"$dir\" && npm test); done",
-    "build": "for dir in services/*; do (cd \"$dir\" && npm build); done",
-    "deploy": "for dir in services/*; do (cd \"$dir\" && npm deploy); done",
-    "release": "for dir in services/*; do (cd \"$dir\" && npm release); done",
+    "build": "for dir in services/*; do (cd \"$dir\" && npm run build); done",
+    "deploy": "for dir in services/*; do (cd \"$dir\" && npm run deploy); done",
+    "release": "for dir in services/*; do (cd \"$dir\" && npm run release); done",
     "sonar": "sonar-scanner"
   },
   "version": "2.0.0",
