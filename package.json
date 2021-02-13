@@ -1,20 +1,13 @@
 {
   "name": "root",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "services/*"
-    ],
-    "nohoist": [
-      "**/contentful",
-      "**/@contentful/**",
-      "**/winston",
-      "**/aws-xray-sdk-core"
-    ]
-  },
   "scripts": {
-    "sonar": "sonar-scanner",
-    "test": "jest"
+    "postinstall": "for dir in services/*; do (cd \"$dir\" && npm install); done",
+    "test": "for dir in services/*; do (cd \"$dir\" && npm test); done",
+    "build": "for dir in services/*; do (cd \"$dir\" && npm build); done",
+    "deploy": "for dir in services/*; do (cd \"$dir\" && npm deploy); done",
+    "release": "for dir in services/*; do (cd \"$dir\" && npm release); done",
+    "sonar": "sonar-scanner"
   },
   "version": "2.0.0"
 }
