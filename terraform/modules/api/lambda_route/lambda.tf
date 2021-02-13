@@ -52,15 +52,17 @@ resource "aws_lambda_alias" "prod" {
 resource "aws_lambda_permission" "apigateway_dev" {
     statement_id = "AllowAPIGateway"
     action = "lambda:InvokeFunction"
-    function_name = aws_lambda_alias.dev.arn
+    function_name = aws_lambda_function.function.arn
     principal = "apigateway.amazonaws.com"
+    qualifier = "dev"
     source_arn = "${var.api_gateway_execution_arn}/*/*${var.path}"
 }
 
 resource "aws_lambda_permission" "apigateway_prod" {
     statement_id = "AllowAPIGateway"
     action = "lambda:InvokeFunction"
-    function_name = aws_lambda_alias.prod.arn
+    function_name = aws_lambda_function.function.arn
     principal = "apigateway.amazonaws.com"
+    qualifier = "prod"
     source_arn = "${var.api_gateway_execution_arn}/*/*${var.path}"
 }
