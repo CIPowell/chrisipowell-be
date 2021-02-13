@@ -9,7 +9,7 @@ variable handler {
 }
 variable runtime {
     type = string
-    default = "nodejs12.x"
+    default = "nodejs14.x"
 }
 variable method {
     type = string
