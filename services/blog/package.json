@@ -7,14 +7,6 @@
   "homepage": "https://github.com/CIPowell/chrisipowell-be#readme",
   "license": "ISC",
   "main": "lib/index.js",
-  "workspaces": {
-    "nohoist": [
-      "**/contentful",
-      "**/@contentful/**",
-      "**/aws-xray-sdk-core",
-      "**/aws-xray-sdk-core/**"
-    ]
-  },
   "directories": {
     "lib": "lib",
     "test": "__tests__"
