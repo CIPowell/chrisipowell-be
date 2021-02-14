@@ -29,7 +29,8 @@
     "url": "https://github.com/CIPowell/chrisipowell-be/issues"
   },
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "^13.4.0",
+    "@contentful/rich-text-html-renderer": "^14.1.2",
+    "@contentful/rich-text-types": "^14.1.2",
     "aws-sdk": "^2.703.0",
     "aws-xray-sdk-core": "^3.2.0",
     "contentful": "^8.1.7",

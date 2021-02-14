@@ -1,5 +1,5 @@
 const AWSXRay = require('aws-xray-sdk-core');
-const { SecretsManager } = AWSXRay.captureAWS(require('aws-sdk'));
+const { SecretsManager } = require('aws-sdk');
 
 AWSXRay.captureHTTPsGlobal(require('http'));
 AWSXRay.captureHTTPsGlobal(require('https'));
