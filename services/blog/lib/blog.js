@@ -28,7 +28,7 @@ const listArticles = ({ contentful }) => async({page = 1, pageSize = 10}) => {
     return items.map(post => ({
         title: post.fields.title,
         body: documentToHtmlString(post.fields.body, options),
-        preview: documentToHtmlString(getPreview(post.fields.body, options)),
+        preview: documentToHtmlString(getPreview(post.fields.body), options),
         updatedAt: post.sys.updatedAt,
         author: 'CIP',
         video: getVideo(post)
