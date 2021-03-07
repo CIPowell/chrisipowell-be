@@ -8,6 +8,8 @@ AWSXRay.capturePromise();
 const Contentful = require('contentful');
 const pages = require('./pages');
 
+const secretsManager = new SecretsManager({ region: 'eu-west-1' });
+
 const getSecret = () => new Promise((resolve, reject) => {   
     console.log("getting secret");
     secretsManager.getSecretValue({ SecretId: 'contentful-api-key'}, (err, data) => {
