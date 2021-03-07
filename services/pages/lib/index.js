@@ -36,11 +36,8 @@ const setup = async () => {
 };
 
 module.exports.handler = async (event) => {
-    let { slug } = event.pathParameters
-    let { listPages, getPage } = await setup();
+    const { slug } = event.pathParameters
+    const { listPages } = await setup();
 
-    return { 
-        links : listPages(slug),
-        content: getPage(slug)
-    }
+    return listPages(slug)
  }
