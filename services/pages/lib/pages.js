@@ -63,6 +63,4 @@ const listPages = ({ contentful }) => async (slug = "") => {
     }
 }
 
-
-
 module.exports = deps => ({listPages: listPages(deps)});
