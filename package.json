@@ -11,6 +11,7 @@
   },
   "version": "2.0.0",
   "devDependencies": {
+    "eslint": "^7.21.0",
     "sonarqube-scanner": "^2.8.0"
   }
 }
