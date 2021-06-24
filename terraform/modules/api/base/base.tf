@@ -10,6 +10,7 @@ resource "aws_apigatewayv2_api" "api" {
     cors_configuration {
         allow_origins = [
             "http://localhost:3000",
+            "https://chrisipowell.co.uk",
             "https://www.chrisipowell.co.uk",
             "http://dev.chrisipowell.co.uk"
         ]
