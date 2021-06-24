@@ -1,5 +1,5 @@
 name: Deploy Master
-on: 
+on:
   push:
     branches:
       - main
@@ -16,7 +16,7 @@ jobs:
           node-version: 14.x
       - run: npm install
       - run: npm test
-        env: 
+        env:
           CI: true
       - run: npm run sonar -- -Dsonar.login=${{ secrets.SONAR_LOGIN }}
         env:
@@ -25,6 +25,6 @@ jobs:
       - name: Run Deployments
         run: npm run deploy
         env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_DEFAULT_REGION: 'eu-west-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "eu-west-1"

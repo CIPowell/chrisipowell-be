@@ -1,5 +1,5 @@
 name: Release a tag
-on: 
+on:
   push:
     tags:
       - v*
@@ -16,12 +16,12 @@ jobs:
           node-version: 12.x
       - run: npm install
       - run: npm test
-        env: 
+        env:
           CI: true
       - run: npm run build
       - name: Release the hounds!
         run: npm run release
         env:
-            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            AWS_DEFAULT_REGION: 'eu-west-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: "eu-west-1"
