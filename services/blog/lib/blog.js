@@ -33,6 +33,7 @@ const listArticles =
       body: documentToHtmlString(post.fields.body, options),
       preview: documentToHtmlString(getPreview(post.fields.body), options),
       updatedAt: post.sys.updatedAt,
+      slug: post.fields.slug,
       author: "CIP",
       video: getVideo(post),
     }));
