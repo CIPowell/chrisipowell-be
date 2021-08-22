@@ -9,7 +9,7 @@
     "release": "for dir in services/*; do (cd \"$dir\" && npm run release); done",
     "sonar": "sonar-scanner"
   },
-  "version": "2.1.0",
+  "version": "2.2.0",
   "devDependencies": {
     "eslint": "^7.21.0",
     "sonarqube-scanner": "^2.8.0"
